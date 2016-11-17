@@ -102,6 +102,7 @@ class TranslatablePage(Page):
     ]
 
     base_form_class = AdminTranslatablePageForm
+    is_creatable = False
 
     def __str__(self):
         return "{} ({})".format(self.title, self.language)
@@ -208,7 +209,7 @@ class TranslatablePage(Page):
         if not parent:
             parent = self.get_translation_parent(language)
 
-        slug = '%s-%s' % (self.slug, language.code)
+        slug = self.slug
         if self.slug == self.language.code:
             slug = language.code
 
